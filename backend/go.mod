@@ -1,4 +1,4 @@
-module github.com/KabirSinghBhatia/BitChord/backend
+module github.com/KabirSinghBhatia/Poswave/backend
 
 go 1.27.0
 

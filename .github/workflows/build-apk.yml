@@ -2,7 +2,7 @@ name: Build Poswave Debug APK
 
 on:
   push:
-    branches: [poswave]
+    branches: [poswave, main]
   workflow_dispatch:
 
 concurrency:

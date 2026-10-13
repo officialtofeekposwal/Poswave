@@ -1,11 +1,11 @@
 [Unit]
-Description=BitChord Listen Together server
+Description=Poswave Listen Together server
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-User=bitchord
-ExecStart=/opt/bitchord-jam/server
+User=poswave
+ExecStart=/opt/poswave-jam/server
 Restart=always
 RestartSec=2
 
