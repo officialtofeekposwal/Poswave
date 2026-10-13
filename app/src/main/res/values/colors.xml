@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="poswave_primary">#FF6C3CE1</color>
+    <color name="poswave_accent">#FF00BFFF</color>
+    <color name="poswave_background">#FF0D0D0D</color>
 </resources>

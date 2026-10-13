@@ -49,7 +49,7 @@ val lastfmSecret: String = (
 val listenTogetherServer: String = (
     localProps.getProperty("LISTEN_TOGETHER_SERVER")
         ?: System.getenv("LISTEN_TOGETHER_SERVER")
-        ?: "https://bitchord-listen-together.onrender.com"
+        ?: ""
     ).trim().trimEnd('/')
 
 /*
@@ -70,12 +70,12 @@ val listenTogetherServer: String = (
 val betaSuffix = ""
 
 android {
-    namespace = "com.music.bitchord"
+    namespace = "com.poswal.poswave"
     // InnerTubeX's AAR requires compiling against 37; targetSdk (runtime behaviour) stays 36.
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.music.bitchord"
+        applicationId = "com.poswal.poswave"
         // 26 keeps reach wide; real-time blur (RenderEffect) kicks in on API 31+,
         // Haze falls back to a translucent scrim below that.
         minSdk = 26
@@ -118,8 +118,8 @@ android {
     productFlavors {
         create("dev") {
             dimension = "env"
-            applicationId = "com.dev.bitchord"
-            resValue("string", "app_name", "BitChord Dev")
+            applicationId = "com.dev.poswave"
+            resValue("string", "app_name", "Poswave Dev")
         }
         create("prod") {
             dimension = "env"
@@ -328,7 +328,7 @@ dependencies {
     // a camera scanner and an Activity with it, and nothing here reads a code —
     // a party is joined by tapping somebody else's link or typing six
     // characters. This produces the bit matrix; the drawing is ours, in
-    // [com.music.bitchord.ui.components.QrCode], so the result is styled like
+    // [com.poswal.poswave.ui.components.QrCode], so the result is styled like
     // the rest of the app rather than a stock black-and-white bitmap.
     implementation("com.google.zxing:core:3.5.3")
 
@@ -393,8 +393,8 @@ dependencies {
     // ---- Casting: Google Cast sender + the route discovery it sits on ----
     // The framework and the router only. media3-cast is left out on purpose:
     // its CastPlayer hands the receiver whatever URI a MediaItem carries, and
-    // ours are `bitchord://` addresses that only the service's resolver can
-    // turn into a real stream — see [com.music.bitchord.playback.cast.CastPlayback].
+    // ours are `poswave://` addresses that only the service's resolver can
+    // turn into a real stream — see [com.poswal.poswave.playback.cast.CastPlayback].
     implementation("com.google.android.gms:play-services-cast-framework:22.2.0")
     implementation("androidx.mediarouter:mediarouter:1.8.1")
 
@@ -433,10 +433,10 @@ val verifyDevInstall = tasks.register("verifyDevInstall") {
             .drop(1)
             .mapNotNull { line -> line.split('\t').takeIf { it.size == 2 && it[1] == "device" }?.get(0) }
         serials.forEach { serial ->
-            logger.lifecycle("verifyDevInstall: compiling com.dev.bitchord on $serial")
+            logger.lifecycle("verifyDevInstall: compiling com.dev.poswave on $serial")
             ProcessBuilder(
                 adbPath, "-s", serial, "shell", "cmd", "package", "compile",
-                "-m", "verify", "-f", "com.dev.bitchord",
+                "-m", "verify", "-f", "com.dev.poswave",
             ).inheritIO().start().waitFor()
         }
     }

@@ -64,6 +64,6 @@ kotlin {
 }
 
 android {
-    namespace = "com.music.bitchord.shared"
+    namespace = "com.poswal.poswave.shared"
     compileSdk = 36
 }
